@@ -56,6 +56,5 @@ C:\Users\userrfid\Documents\ProyectosVisualStudio2013\MVCRepository\Z-MarketMVC\
 C:\Users\userrfid\Documents\ProyectosVisualStudio2013\MVCRepository\Z-MarketMVC\Z-MarketMVC\Z-Market\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\userrfid\Documents\ProyectosVisualStudio2013\MVCRepository\Z-MarketMVC\Z-MarketMVC\Z-Market\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\userrfid\Documents\ProyectosVisualStudio2013\MVCRepository\Z-MarketMVC\Z-MarketMVC\Z-Market\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\userrfid\Documents\ProyectosVisualStudio2013\MVCRepository\Z-MarketMVC\Z-MarketMVC\Z-Market\obj\Debug\Z-Market.csprojResolveAssemblyReference.cache
 C:\Users\userrfid\Documents\ProyectosVisualStudio2013\MVCRepository\Z-MarketMVC\Z-MarketMVC\Z-Market\obj\Debug\Z-Market.dll
 C:\Users\userrfid\Documents\ProyectosVisualStudio2013\MVCRepository\Z-MarketMVC\Z-MarketMVC\Z-Market\obj\Debug\Z-Market.pdb
