@@ -58,3 +58,4 @@ C:\Users\userrfid\Documents\ProyectosVisualStudio2013\MVCRepository\Z-MarketMVC\
 C:\Users\userrfid\Documents\ProyectosVisualStudio2013\MVCRepository\Z-MarketMVC\Z-MarketMVC\Z-Market\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\userrfid\Documents\ProyectosVisualStudio2013\MVCRepository\Z-MarketMVC\Z-MarketMVC\Z-Market\obj\Debug\Z-Market.dll
 C:\Users\userrfid\Documents\ProyectosVisualStudio2013\MVCRepository\Z-MarketMVC\Z-MarketMVC\Z-Market\obj\Debug\Z-Market.pdb
+C:\Users\userrfid\Documents\ProyectosVisualStudio2013\MVCRepository\Z-MarketMVC\Z-MarketMVC\Z-Market\obj\Debug\Z-Market.csprojResolveAssemblyReference.cache
