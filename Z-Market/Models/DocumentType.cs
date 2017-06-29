@@ -11,10 +11,13 @@ namespace Z_Market.Models
         [Key]
         public int DocumentId { get; set; }
 
-        [Display(Name = "Document")]
+        [StringLength(30, ErrorMessage = "The field {0} must contain between {2} and {1} characters!")]
+        [Required(ErrorMessage = "Ypu must enter the field {0}")]
+        [Display(Name = "Document Description")]
         public string Description { get; set; }
 
-        [Display(Name = "Document Type")]
+
         public virtual ICollection<Employee> Employees { get; set; }
+        public virtual ICollection<Customer> Customers { get; set; }
     }
 }

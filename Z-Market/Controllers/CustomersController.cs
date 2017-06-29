@@ -10,116 +10,124 @@ using Z_Market.Models;
 
 namespace Z_Market.Controllers
 {
-    public class DocumentTypesController : Controller
+    public class CustomersController : Controller
     {
         private Z_MarketContext db = new Z_MarketContext();
 
-        // GET: DocumentTypes
+        // GET: Customers
         public ActionResult Index()
         {
-            return View(db.DocumentTypes.ToList());
+            var customers = db.Customers.Include(c => c.DocumentType);
+            return View(customers.ToList());
         }
 
-        // GET: DocumentTypes/Details/5
+        // GET: Customers/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DocumentType documentType = db.DocumentTypes.Find(id);
-            if (documentType == null)
+            Customer customer = db.Customers.Find(id);
+            if (customer == null)
             {
                 return HttpNotFound();
             }
-            return View(documentType);
+            return View(customer);
         }
 
-        // GET: DocumentTypes/Create
+        // GET: Customers/Create
         public ActionResult Create()
         {
+            var list = db.DocumentTypes.OrderBy(c => c.Description).ToList();
+            list.Add(new DocumentType {DocumentId = 0, Description = "[Seleccione un tipo de documento]"});
+            list = list.OrderBy(c => c.Description).ToList();
+            ViewBag.DocumentId = new SelectList(list, "DocumentId", "Description");
             return View();
         }
 
-        // POST: DocumentTypes/Create
+        // POST: Customers/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "DocumentId,Description")] DocumentType documentType)
+        public ActionResult Create([Bind(Include = "CustomerId,FirstName,LastName,Phone,Address,EMail,Document,DocumentId")] Customer customer)
         {
             if (ModelState.IsValid)
             {
-                db.DocumentTypes.Add(documentType);
-                db.SaveChanges();
+                db.Customers.Add(customer);
+                try
+                {
+                    db.SaveChanges();
+
+                }
+                catch (Exception)
+                {
+                }
+                
                 return RedirectToAction("Index");
             }
 
-            return View(documentType);
+            ViewBag.DocumentId = new SelectList(db.DocumentTypes, "DocumentId", "Description", customer.DocumentId);
+            return View(customer);
         }
 
-        // GET: DocumentTypes/Edit/5
+        // GET: Customers/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DocumentType documentType = db.DocumentTypes.Find(id);
-            if (documentType == null)
+            Customer customer = db.Customers.Find(id);
+            if (customer == null)
             {
                 return HttpNotFound();
             }
-            return View(documentType);
+            ViewBag.DocumentId = new SelectList(db.DocumentTypes, "DocumentId", "Description", customer.DocumentId);
+            return View(customer);
         }
 
-        // POST: DocumentTypes/Edit/5
+        // POST: Customers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "DocumentId,Description")] DocumentType documentType)
+        public ActionResult Edit([Bind(Include = "CustomerId,FirstName,LastName,Phone,Address,EMail,Document,DocumentId")] Customer customer)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(documentType).State = EntityState.Modified;
+                db.Entry(customer).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(documentType);
+            ViewBag.DocumentId = new SelectList(db.DocumentTypes, "DocumentId", "Description", customer.DocumentId);
+            return View(customer);
         }
 
-        // GET: DocumentTypes/Delete/5
+        // GET: Customers/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DocumentType documentType = db.DocumentTypes.Find(id);
-            if (documentType == null)
+            Customer customer = db.Customers.Find(id);
+            if (customer == null)
             {
                 return HttpNotFound();
             }
-            return View(documentType);
+            return View(customer);
         }
 
-        // POST: DocumentTypes/Delete/5
+        // POST: Customers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            DocumentType documentType = db.DocumentTypes.Find(id);
-            db.DocumentTypes.Remove(documentType);
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (Exception e)
-            {
-                //generar excepcion
-            }
-            
+            Customer customer = db.Customers.Find(id);
+            db.Customers.Remove(customer);
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

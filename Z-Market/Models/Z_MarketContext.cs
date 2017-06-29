@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Web;
 
@@ -19,11 +20,21 @@ namespace Z_Market.Models
         {
         }
 
+        //esta sobrecarga de metodo permite deshabilitar el borrado en cascada
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        { 
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+        }
+
         public System.Data.Entity.DbSet<Z_Market.Models.Product> Products { get; set; }
 
         public System.Data.Entity.DbSet<Z_Market.Models.DocumentType> DocumentTypes { get; set; }
 
         public System.Data.Entity.DbSet<Z_Market.Models.Employee> Employees { get; set; }
+
+        public System.Data.Entity.DbSet<Z_Market.Models.Supplier> Suppliers { get; set; }
+
+        public System.Data.Entity.DbSet<Z_Market.Models.Customer> Customers { get; set; }
     
     }
 }
