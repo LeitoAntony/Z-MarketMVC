@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Z_Market.Models
 {
-    public class Customer
+    public partial class Customer
     {
         [Key]
         public int CustomerId { get; set; }

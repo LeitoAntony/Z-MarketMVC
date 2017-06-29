@@ -17,12 +17,40 @@ namespace Z_Market.Controllers
             orderView.Customer = new Customer();
             orderView.ProductOrders = new List<ProductOrder>();
 
-            var list = db.DocumentTypes.OrderBy(c => c.Description).ToList();
-            list.Add(new DocumentType { DocumentId = 0, Description = "[Seleccione un tipo de documento]" });
-            list = list.OrderBy(c => c.Description).ToList();
-            ViewBag.DocumentId = new SelectList(list, "DocumentId", "Description");
+            var list = db.Customers.ToList();
+            list.Add(new Customer { CustomerId = 0, FirstName = "[Seleccione un cliente]" });
+            list = list.OrderBy(c => c.FullName).ToList();
+            ViewBag.CustomerId = new SelectList(list, "CustomerId", "FullName");
 
             return View(orderView);
+        }
+        [HttpPost]
+        public ActionResult NewOrder(OrderView orderView)
+        {
+            var list = db.Customers.ToList();
+            list.Add(new Customer { CustomerId = 0, FirstName = "[Seleccione un cliente]" });
+            list = list.OrderBy(c => c.FullName).ToList();
+            ViewBag.CustomerId = new SelectList(list, "CustomerId", "FullName");
+            return View(orderView);
+        }
+
+        public ActionResult AddProduct(ProductOrder productOrder)
+        {
+            var list = db.Products.ToList();
+            list.Add(new Product { ProductId = 0, Description = "[Seleccione un producto]" });
+            list = list.OrderBy(c => c.Description).ToList();
+            ViewBag.ProductId = new SelectList(list, "ProductId", "Description");
+            return View(productOrder);
+        }
+
+        [HttpPost]
+        public ActionResult AddProduct(FormCollection form)
+        {
+            var list = db.Products.ToList();
+            list.Add(new Product { ProductId = 0, Description = "[Seleccione un producto]" });
+            list = list.OrderBy(c => c.Description).ToList();
+            ViewBag.ProductId = new SelectList(list, "ProductId", "Description");
+            return View();
         }
 
         protected override void Dispose(bool disposing)
